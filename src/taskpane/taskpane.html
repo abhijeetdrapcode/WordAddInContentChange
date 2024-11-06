@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Word Add-in</title>
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+    <script src="taskpane.js"></script>
+    <link rel="stylesheet" href="taskpane.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div id="copyMessage">Text has been copied successfully!</div>
+      <div id="changeNotification" style="display: none; background-color: #fff3cd; color: #856404; padding: 10px; margin-bottom: 10px; border-radius: 4px;">
+        Document content has changed
+        <button id="reloadButton" class="small-text" style="margin-left: 10px;">Reload Content</button>
+      </div>
+      <div class="control-group">
+        <select id="categorySelect" class="small-text">
+          <option value="representation" selected>Representation and Warranty</option>
+          <option value="closing">Closing Checklist</option>
+          <option value="postClosing">Post Closing</option>
+        </select>
+        <button id="logStyleContentButton" class="small-text">Copy Selected Text</button>
+        <button id="clearContentButton" class="small-text">Clear</button>
+      </div>
+      <div class="content-sections">
+        <div id="closingContent" class="category-content">
+          <h3>Closing Checklist</h3>
+          <pre class="content-area"></pre>
+        </div>
+        <div id="postClosingContent" class="category-content">
+          <h3>Post Closing</h3>
+          <pre class="content-area"></pre>
+        </div>
+        <div id="representationContent" class="category-content">
+          <h3>Representation and Warranty</h3>
+          <pre class="content-area"></pre>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
