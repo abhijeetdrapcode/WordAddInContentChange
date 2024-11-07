@@ -10,10 +10,20 @@
   <body>
     <div class="container">
       <div id="copyMessage">Text has been copied successfully!</div>
-      <div id="changeNotification" style="display: none; background-color: #fff3cd; color: #856404; padding: 10px; margin-bottom: 10px; border-radius: 4px;">
-        Document content has changed
-        <button id="reloadButton" class="small-text" style="margin-left: 10px;">Reload Content</button>
-      </div>
+<div id="changeNotification" style="display: none; margin-bottom: 7px;">
+  <div class="notification-content" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 15px; background-color: #f0f8ff; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+    <div style="display: flex; align-items: center;">
+      <span style="font-size: 14px; font-weight: 700;">The content of the document has been updated</span>
+      <button id="reloadButton" class="small-text" style="margin-left: 11px; padding: 12px 12px; background-color: #007bff; color: white; border: 1px solid #007bff; border-radius: 5px; font-size: 20px; cursor: pointer; transition: background-color 0.3s ease;">
+        Reload
+      </button>
+    </div>
+    <button id="dismissNotification" style="background: rgb(255, 106, 106); border: none; font-size: 20px; color: black; cursor: pointer; transition: color 0.3s ease;">
+      <span>&times;</span>
+    </button>
+  </div>
+</div>
+
       <div class="control-group">
         <select id="categorySelect" class="small-text">
           <option value="representation" selected>Representation and Warranty</option>
@@ -21,7 +31,7 @@
           <option value="postClosing">Post Closing</option>
         </select>
         <button id="logStyleContentButton" class="small-text">Copy Selected Text</button>
-        <button id="clearContentButton" class="small-text">Clear</button>
+        <button id="clearContentButton" class="small-text" style="background-color: rgb(218, 15, 0);">Clear</button>
       </div>
       <div class="content-sections">
         <div id="closingContent" class="category-content">

@@ -13,23 +13,25 @@ Office.onReady((info) => {
     const logStyleContentButton = document.getElementById("logStyleContentButton");
     const categorySelect = document.getElementById("categorySelect");
     const reloadButton = document.getElementById("reloadButton");
+    const dismissButton = document.getElementById("dismissNotification");
 
     logStyleContentButton.disabled = true;
     logStyleContentButton.onclick = getListInfoFromSelection;
     document.getElementById("clearContentButton").onclick = clearCurrentContent;
     reloadButton.onclick = handleReloadContent;
+    if (dismissButton) {
+      dismissButton.onclick = dismissChangeNotification;
+    }
 
     categorySelect.onchange = handleCategoryChange;
     handleCategoryChange();
 
-    // Set up periodic content check
     setInitialContentHash();
-    setInterval(checkForDocumentChanges, 2000); // Check every 2 seconds
+    setInterval(checkForDocumentChanges, 2000);
 
     loadAllParagraphsData();
   }
 });
-
 async function setInitialContentHash() {
   try {
     await Word.run(async (context) => {
@@ -43,6 +45,12 @@ async function setInitialContentHash() {
   }
 }
 
+function dismissChangeNotification() {
+  const changeNotification = document.getElementById("changeNotification");
+  if (changeNotification) {
+    changeNotification.style.display = "none";
+  }
+}
 async function calculateHash(text) {
   const encoder = new TextEncoder();
   const data = encoder.encode(text);
@@ -72,7 +80,6 @@ async function checkForDocumentChanges() {
     console.error("Error checking for document changes:", error);
   }
 }
-
 async function handleReloadContent() {
   const changeNotification = document.getElementById("changeNotification");
   if (changeNotification) {
@@ -82,7 +89,6 @@ async function handleReloadContent() {
   await loadAllParagraphsData();
 }
 
-// Existing functions remain the same...
 async function handleCategoryChange() {
   const categorySelect = document.getElementById("categorySelect");
   const selectedCategory = categorySelect.value;
